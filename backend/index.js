@@ -10,12 +10,13 @@ app.use(express.json())
 
 app.use('/books',bookRoutes)
 
-
+/*
 app.use(cors({
     origin:'http://localhost:5555/',
     method:['GET','POST','PUT','DELETE'],
     allowHeaders:['Content-Type']
 }))
+    */
 
 app.get('/',(req,res)=>{
     res.status(234).send('Testing')
@@ -32,7 +33,3 @@ mongoose.connect(mongodbUrl)
 .catch((err)=>{
     console.log(err)
 })
-
-
-
-

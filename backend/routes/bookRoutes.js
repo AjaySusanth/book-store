@@ -1,8 +1,14 @@
 import express from 'express'
 import { Books } from '../models/bookModel.js'
 
-
 const router = express.Router()
+
+//handling cors
+router.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
 // Create new book
 
@@ -51,7 +57,6 @@ router.get('/:id',async (req,res)=>{
     try{
         const {id} = req.params
         const book = await Books.findById(id)
-
         res.status(200).send(book)
     }
     catch(err){
@@ -85,7 +90,6 @@ router.put('/:id',async (req,res)=>{
     }
 })
 
-
 // delete by id 
 
 router.delete('/:id',async (req,res)=>{
@@ -104,5 +108,4 @@ router.delete('/:id',async (req,res)=>{
         res.status(500).send({message:err.message})
     }
 })
-
 export default router
